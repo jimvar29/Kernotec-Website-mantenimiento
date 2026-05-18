@@ -1,0 +1,629 @@
+:root {
+    --color-primary:  #f07e13;
+    --color-text:     #ffffff;
+    --color-bg:       #051937;
+
+    
+    --logo-w: clamp(190px, 70vw, 290px);
+
+    
+    --gear-w:     clamp(260px, 85vw, 400px); 
+    --gear-scale: 1.2; 
+    --gear-scale-mirror: -1.2;
+    --gears-gap:  0vw; 
+    --gear-margin: -5vw; 
+
+    
+    --banner-h:        clamp(60px, 14vh, 120px);
+    --banner-svg-w:    210vw;               
+    --banner-svg-ar:   2045 / 145;
+
+    
+    --title-sz:    clamp(1rem,   3.8vw,  1.9rem); 
+    --subtitle-sz: clamp(0.75rem, 3vw, 1.3rem);
+
+    
+    --footer-bg-w:  170vw;                 
+    --footer-bg-ml: -35vw;
+    --footer-bg-ar: 1994 / 208;
+    --brand-logo-h: clamp(60px, 16vw, 100px); 
+    --brand-gap:    clamp(16px, 5vw, 32px);
+
+    
+    --container-pt: 4vh;
+    --gears-mt:     -2vh; 
+    --message-mb:   3vh; 
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-bg);
+}
+
+
+@keyframes spin         { to { transform: rotate( 360deg); } }
+@keyframes spin-reverse { to { transform: rotate(-360deg); } }
+
+
+.maintenance {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.maintenance__background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100lvh;
+    background: url('../img/mobile.webp') center center / cover no-repeat;
+    z-index: 1;
+    
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+
+.maintenance__container {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: var(--container-pt);
+}
+
+
+.maintenance__logo-wrapper {
+    flex-shrink: 0;
+}
+
+.maintenance__logo-img {
+    display: block;
+    width: var(--logo-w);
+    height: auto;
+}
+
+
+
+.maintenance__gears-wrapper {
+    position: relative;
+    width: 100vw; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gears-gap);
+    margin-top: var(--gears-mt);
+    overflow: visible;
+    pointer-events: none;
+    z-index: 2;
+}
+
+
+.maintenance__gear {
+    display: block;
+    flex-shrink: 0;
+    pointer-events: none;
+    opacity: 0.85;
+    width: var(--gear-w);
+    margin: 0 var(--gear-margin, 0);
+}
+
+.maintenance__gear--top-left  { transform: scale( var(--gear-scale)); }
+.maintenance__gear--top-right { transform: scale(calc(var(--gear-scale) * -1), var(--gear-scale)); }
+
+
+.maintenance__message {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: var(--message-mb);
+}
+
+
+.maintenance__banner-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+
+.maintenance__banner-svg {
+    display: block;
+    width: var(--banner-svg-w);
+    max-width: none;
+    height: auto;
+    aspect-ratio: var(--banner-svg-ar);
+    object-fit: fill;
+    flex-shrink: 0;
+}
+
+
+.maintenance__banner-content {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.1rem, 0.8vw, 0.3rem);
+    
+    transform: translateY(-8%); 
+}
+
+
+.maintenance__title {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: var(--title-sz);
+    font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.maintenance__title--bold  { font-weight: 800; }
+.maintenance__title--light { font-weight: 400; }
+
+
+.maintenance__subtitle {
+    text-align: center;
+    color: var(--color-text);
+    font-size: var(--subtitle-sz);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin: 0;
+    padding: 0 12px;
+}
+
+
+.maintenance__footer {
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    margin-top: auto;
+    overflow: hidden;          
+}
+
+
+
+.maintenance__footer-bg {
+    display: block;
+    width: var(--footer-bg-w);
+    max-width: none;
+    margin-left: var(--footer-bg-ml);
+    height: auto;
+    aspect-ratio: var(--footer-bg-ar);
+    object-fit: fill;
+    position: relative;
+    z-index: 0;
+}
+
+
+.maintenance__brands {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--brand-gap);
+}
+
+
+.maintenance__brand-logo {
+    height: var(--brand-logo-h);
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.maintenance__brand-logo:hover {
+    transform: scale(1.1);
+}
+
+
+
+
+
+@media (min-width: 768px) and (orientation: portrait) {
+    :root {
+        --logo-w:       clamp(330px, 70vw, 490px); 
+        --gear-w:       clamp(320px, 60vw, 480px);
+        --gear-scale:   1.2;
+        --gears-gap:    8vw;
+        --gear-margin:  0vw;
+        --banner-svg-w: 160vw; 
+        --title-sz:     clamp(1.15rem, 3.2vw, 2rem);
+        --subtitle-sz:  clamp(0.9rem,   2.8vw,   1.6rem);
+        --brand-logo-h: clamp(75px, 14vw, 140px); 
+        --brand-gap:    clamp(24px, 5vw,  56px); 
+        --gears-mt:     -3vh; 
+        --message-mb:   4.5vh; 
+    }
+
+    .maintenance__background {
+        background-image: url('../img/tablet-vertical.webp');
+    }
+}
+
+
+@media (max-width: 899px) and (orientation: landscape),
+       (max-height: 499px) and (orientation: landscape) {
+    :root {
+        --logo-w:       clamp(180px, 28vw, 260px);
+        --gear-w:       clamp(120px, 24vw, 200px);
+        --gear-scale:   1.1;
+        --gears-gap:    4vw;
+        --gear-margin:  0vw;
+        --banner-svg-w: 100vw;
+        --banner-svg-ar: 2045 / 145;
+        --banner-h:     clamp(50px, 14vh, 80px);
+        --title-sz:     clamp(0.75rem, 1.8vw, 1.1rem);
+        --subtitle-sz:  clamp(0.65rem, 1.6vw, 0.95rem);
+        --brand-logo-h: clamp(65px, 18vh, 90px);
+        --brand-gap:    clamp(8px, 3vw, 20px);
+        --container-pt: 1.5vh;
+        --footer-bg-w:  100%;
+        --footer-bg-ml: 0;
+        --footer-bg-ar: 1994 / 208;
+        --gears-mt:     0;
+        --message-mb:   0;
+    }
+
+        .maintenance__background {
+        background-image: url('../img/mobile.webp');
+    }
+
+    html, body {
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+    }
+
+    .maintenance {
+        height: 100vh;
+        height: 100svh;
+        min-height: unset;
+        overflow: hidden;
+        justify-content: space-between;
+    }
+
+    .maintenance__container {
+        flex: 1;
+        position: relative;
+        z-index: 5;
+        justify-content: space-between;
+        padding-top: 3vh;
+        padding-bottom: 2vh;
+    }
+
+    .maintenance__logo-wrapper {
+        position: relative;
+        z-index: 10;
+    }
+
+    .maintenance__gears-wrapper {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .maintenance__gear {
+        position: absolute;
+        opacity: 0.55;
+    }
+
+    .maintenance__gear--top-left {
+        top: 5%;
+        left: -4%;
+        transform: scale(1.1);
+    }
+
+    .maintenance__gear--top-right {
+        top: 5%;
+        right: -4%;
+        transform: scale(-1.1, 1.1);
+    }
+
+    .maintenance__message {
+        margin-top: auto;
+    }
+
+    .maintenance__banner-wrapper {
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .maintenance__banner-svg {
+        width: 100vw;
+        object-fit: fill;
+    }
+
+    .maintenance__footer {
+        margin-top: 0;
+    }
+
+    .maintenance__footer-bg {
+        width: 100vw;
+        margin-left: 0;
+        display: block;
+    }
+
+    .maintenance__brands {
+        height: 70%;
+    }
+}
+
+
+@media (min-width: 900px) and (max-width: 1199px) and (min-height: 500px) and (orientation: landscape) {
+    :root {
+        --logo-w:       clamp(280px, 32vw, 400px);
+        --gear-w:       clamp(280px, 38vw, 460px);
+        --gear-scale:   1.25;
+        --title-sz:     clamp(1.2rem, 1.9vw, 1.6rem);
+        --subtitle-sz:  clamp(0.95rem, 1.7vw, 1.3rem);
+        --brand-logo-h: clamp(50px, 8vw, 85px);
+        --brand-gap:    clamp(24px, 4vw, 40px);
+        --container-pt: 2vh;
+        --footer-bg-w:  100%;
+        --footer-bg-ml: 0;
+        --footer-bg-ar: 1994 / 208;
+        --banner-svg-w: 100vw;
+        --gears-mt:     0;
+        --message-mb:   0;
+    }
+    
+        .maintenance__background {
+        background-image: url('../img/tablet-horizontal.webp');
+    }
+
+    html, body {
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+    }
+
+    .maintenance {
+        height: 100vh;
+        height: 100svh;
+        min-height: unset;
+        overflow: hidden;
+        justify-content: space-between;
+    }
+
+    .maintenance__container {
+        flex: 1;
+        position: relative;
+        z-index: 5;
+        justify-content: space-between;
+        padding-top: 5vh;
+        padding-bottom: 3vh; 
+    }
+
+    .maintenance__logo-wrapper {
+        position: relative;
+        z-index: 10;
+    }
+
+    .maintenance__gears-wrapper {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .maintenance__gear {
+        position: absolute;
+        opacity: 0.75;
+    }
+
+    .maintenance__gear--top-left {
+        top: 15%;
+        left: -5%;
+        transform: scale(1.2);
+    }
+
+    .maintenance__gear--top-right {
+        top: 15%;
+        right: -5%;
+        transform: scale(-1.2, 1.2);
+    }
+
+    .maintenance__message {
+        margin-top: auto;
+    }
+
+    .maintenance__banner-wrapper {
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .maintenance__banner-svg {
+        width: 100vw;
+        object-fit: fill;
+    }
+
+    .maintenance__footer {
+        margin-top: 0;
+    }
+
+    .maintenance__footer-bg {
+        width: 100vw;
+        margin-left: 0;
+        display: block;
+    }
+
+    .maintenance__brands {
+        height: 72%;
+    }
+}
+
+
+@media (min-width: 1200px) and (max-width: 1399px) and (orientation: landscape) {
+    :root {
+        --logo-w:       clamp(320px, 32vw, 460px); 
+        --gear-w:       clamp(260px, 35vw, 500px);
+        --gear-scale:   1.3;
+        --gear-margin:  0vw;
+        --title-sz:     clamp(1.4rem, 1.8vw, 2rem);
+        --subtitle-sz:  clamp(1.1rem, 1.7vw, 1.6rem);
+        --brand-logo-h: clamp(80px, 9vw, 105px);
+        --brand-gap:    clamp(32px, 5vw, 64px);
+    }
+
+    .maintenance__background {
+        background-image: url('../img/desktop.webp');
+    }
+    
+    html, body {
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+    }
+    .maintenance {
+        height: 100vh;
+        height: 100svh;
+        min-height: unset;
+        overflow: hidden;
+        justify-content: space-between;
+    }
+    
+    .maintenance__container {
+        flex: 1;
+        position: relative;
+        z-index: 5;
+        justify-content: space-between;
+        padding-top: 8vh;
+        padding-bottom: 1vh; 
+    }
+    .maintenance__gears-wrapper {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+    .maintenance__gear {
+        position: absolute;
+        opacity: 0.75;
+    }
+    .maintenance__gear--top-left  { top: 20%; left: -4%; transform: scale(1.3); }
+    .maintenance__gear--top-right { top: 20%; right: -4%; transform: scale(-1.3, 1.3); }
+
+    .maintenance__message { margin-top: auto; }
+    .maintenance__banner-wrapper { width: 100vw; overflow: hidden; }
+    .maintenance__banner-svg { width: 100vw; object-fit: fill; }
+    .maintenance__footer { margin-top: 0; }
+    .maintenance__footer-bg { width: 100vw; margin-left: 0; display: block; }
+}
+
+
+@media (min-width: 1400px) and (orientation: landscape) {
+    :root {
+        --logo-w:       clamp(350px, 26vw, 540px); 
+        --gear-w:       clamp(340px, 30vw, 560px);
+        --title-sz:     clamp(1.8rem, 1.8vw, 2.4rem);
+        --subtitle-sz:  clamp(1.4rem, 1.6vw, 1.9rem);
+        --brand-logo-h: clamp(70px, 6vw, 120px);
+        --brand-gap:    clamp(36px, 5vw, 84px);
+    }
+
+    .maintenance__background {
+        background-image: url('../img/desktop.webp');
+    }
+    
+    html, body {
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+    }
+    .maintenance {
+        height: 100vh;
+        height: 100svh;
+        min-height: unset;
+        overflow: hidden;
+        justify-content: space-between;
+    }
+
+    .maintenance__container {
+        flex: 1;
+        position: relative;
+        z-index: 5;
+        justify-content: center;
+        padding-top: 2vh;
+        padding-bottom: 0;
+    }
+    
+    .maintenance__gears-wrapper {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .maintenance__gear {
+        position: absolute;
+        opacity: 0.75;
+    }
+    .maintenance__gear--top-left  { top: -10%; left: -4%; transform: scale(1.3); }
+    .maintenance__gear--top-right { top: -10%; right: -4%; transform: scale(-1.3, 1.3); }
+
+    .maintenance__message { margin-top: auto; }
+    .maintenance__banner-wrapper { width: 100vw; overflow: hidden; }
+    .maintenance__banner-svg { width: 100vw; object-fit: fill; }
+    .maintenance__footer { margin-top: 0; }
+    .maintenance__footer-bg { width: 100vw; margin-left: 0; display: block; }
+}
+
+
+@media (orientation: landscape) {
+    .maintenance { overflow-x: hidden !important; }
+    .maintenance__banner-wrapper { width: 100vw !important; position: relative !important; transform: none !important; margin: 0 !important; }
+    .maintenance__banner-svg { width: 100vw !important; max-width: 100vw !important; object-fit: fill !important; }
+}
+
+
